@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"github.com/tubs-ips/nutsh/dsl"
+	"github.com/turkenh/nutsh/dsl"
 	"regexp"
 	//"time"
 	"fmt"

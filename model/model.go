@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"regexp"
 	"github.com/tubs-ips/goyaml"
-	"github.com/tubs-ips/nutsh/parser"
-	"github.com/tubs-ips/nutsh/cli"
+	"github.com/turkenh/nutsh/parser"
+	"github.com/turkenh/nutsh/cli"
 	"time"
 )
 
@@ -123,11 +123,11 @@ func (t Tutorial) SelectLesson(auto bool) (string, bool) {
 		}
 		fmt.Println()
 	}
-	fmt.Println("\n0) [Beenden]")
+	fmt.Println("\n0) [Exit]")
 
 	sel := 0
 tryagain:
-	fmt.Print("\nBitte wählen Sie eine Lektion: ")
+	fmt.Print("\nPlease select a lesson: ")
 
 	input := cli.GetInput()
 	buf := make([]rune, 0)
