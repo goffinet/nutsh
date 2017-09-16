@@ -4,6 +4,10 @@ The **Nut Shell** is a framework for creating interactive command line tutorials
 
 To start a Nut Shell tutorial, use `nutsh run LESSON_DIR`. To test a tutorial for proper function, use `nutsh test LESSON_DIR`.
 
+### Run with Docker
+
+    $ docker run -it -v LESSON_DIR:/lessons turkenh/nutsh run /lessons
+
 ## Example session
 
         Do you know the old joke "How do you put an elephant into a fridge?" 
