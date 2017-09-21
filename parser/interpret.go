@@ -206,8 +206,7 @@ func interpret(n *Node, s *scope) (string, interrupt) {
 				fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
 				return "", interrupt{"lesson", ""}
 			}
-			fmt.Printf("\t%s", strings.Replace(out.String(), "\n", "\n\t", -1))
-			return "", i
+			fmt.Printf("\t%s\n\n", strings.Replace(out.String(), "\n", "\n\t", -1))
 		case "break":
 			return "", interrupt{"break", ""}
 		case "lesson":
