@@ -4,7 +4,10 @@ import (
 	"github.com/turkenh/nutsh/dsl"
 	"regexp"
 	//"time"
+	"bytes"
 	"fmt"
+	"os/exec"
+	"strings"
 )
 
 type scope struct {
@@ -15,7 +18,7 @@ type scope struct {
 }
 
 type interrupt struct {
-	typ string
+	typ   string
 	value string
 }
 
@@ -85,13 +88,13 @@ func interpret(n *Node, s *scope) (string, interrupt) {
 						interaction = expects.children[0].children[1].children[1].children[0].typ
 					}
 					// but we prefer any unchecked ones
-					for _, e := range(expects.children) {
+					for _, e := range expects.children {
 						if e.children[2].children[0].typ == "false" {
 							s.current_expect = e.children[1].children[0].children[0].typ
 						}
 					}
 					ok := dsl.SimulatePrompt(s.current_expect, interaction)
-					if ! ok {
+					if !ok {
 						return "", interrupt{"lesson", ""}
 					}
 					goto skip
@@ -100,11 +103,11 @@ func interpret(n *Node, s *scope) (string, interrupt) {
 				}
 			}
 
-			if ! dsl.Prompt() {
+			if !dsl.Prompt() {
 				// cli terminated
 				return "", interrupt{"lesson", ""}
 			}
-			skip:
+		skip:
 
 			for _, block := range s.blocks {
 				_, i := interpret(block, s)
@@ -187,10 +190,24 @@ func interpret(n *Node, s *scope) (string, interrupt) {
 			}
 		case "run":
 			s, ok := dsl.Query(evaluated_arguments[0])
-			if ! ok {
+			if !ok {
 				return "", interrupt{"lesson", ""}
 			}
 			return s, i
+		case "exec":
+			cmd := exec.Command("bash", "-c", evaluated_arguments[0])
+			var out bytes.Buffer
+			var stderr bytes.Buffer
+			cmd.Stdout = &out
+			cmd.Stderr = &stderr
+			err := cmd.Run()
+			if err != nil {
+				fmt.Printf("Error while running: %s\n", evaluated_arguments[0])
+				fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
+				return "", interrupt{"lesson", ""}
+			}
+			fmt.Printf("\t%s", strings.Replace(out.String(), "\n", "\n\t", -1))
+			return "", i
 		case "break":
 			return "", interrupt{"break", ""}
 		case "lesson":
@@ -234,7 +251,7 @@ func interpret(n *Node, s *scope) (string, interrupt) {
 		if i.typ != "" {
 			return "", i
 		}
-		return v1+v2, i
+		return v1 + v2, i
 	case "string":
 		return n.children[0].typ, i
 	case "and":
