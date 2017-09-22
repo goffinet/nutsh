@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"github.com/fatih/color"
 	"github.com/turkenh/nutsh/dsl"
 	"regexp"
 	//"time"
@@ -208,7 +209,26 @@ func interpret(n *Node, s *scope) (string, interrupt) {
 			}
 			fmt.Printf("\t%s\n\n", strings.Replace(out.String(), "\n", "\n\t", -1))
 		case "print":
-			fmt.Printf("%s", evaluated_arguments[0])
+			if len(evaluated_arguments) == 2 {
+				switch evaluated_arguments[1] {
+				case "red":
+					color.Red("%s", evaluated_arguments[0])
+				case "green":
+					color.Green("%s", evaluated_arguments[0])
+				case "yellow":
+					color.Yellow("%s", evaluated_arguments[0])
+				case "blue":
+					color.Blue("%s", evaluated_arguments[0])
+				case "magenta":
+					color.Magenta("%s", evaluated_arguments[0])
+				case "cyan":
+					color.Cyan("%s", evaluated_arguments[0])
+				case "white":
+					color.White("%s", evaluated_arguments[0])
+				}
+			} else {
+				color.White("%s", evaluated_arguments[0])
+			}
 		case "break":
 			return "", interrupt{"break", ""}
 		case "lesson":
