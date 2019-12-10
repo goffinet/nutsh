@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"regexp"
 	"github.com/tubs-ips/goyaml"
-	"github.com/turkenh/nutsh/parser"
-	"github.com/turkenh/nutsh/cli"
+	"github.com/goffinet/nutsh/parser"
+	"github.com/goffinet/nutsh/cli"
 	"time"
 )
 
@@ -52,7 +52,7 @@ func Init(dir string) Tutorial {
 			high = max
 		}
 	}
-	
+
 	// put an "all" file in the lesson directory to show all lessons
 	if _, err := os.Stat(dir+"/all"); err == nil {
 		high = 999
@@ -127,7 +127,7 @@ func (t Tutorial) SelectLesson(auto bool) (string, bool) {
 
 	sel := 0
 tryagain:
-	fmt.Print("\nPlease select a lesson: ")
+	fmt.Print("\nVeuillez sélectionner une leçon: ")
 
 	input := cli.GetInput()
 	buf := make([]rune, 0)

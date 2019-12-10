@@ -6,7 +6,7 @@ To start a Nut Shell tutorial, use `nutsh run LESSON_DIR`. To test a tutorial fo
 
 ### Run with Docker
 
-    $ docker run -it -v LESSON_DIR:/lessons turkenh/nutsh run /lessons
+    $ docker run -it -v LESSON_DIR:/lessons goffinet/nutsh run /lessons
 
 ## Example session
 

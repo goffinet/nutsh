@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	//"io/ioutil"
-	"github.com/turkenh/nutsh/model"
-	"github.com/turkenh/nutsh/parser"
+	"github.com/goffinet/nutsh/model"
+	"github.com/goffinet/nutsh/parser"
 )
 
 func main() {

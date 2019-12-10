@@ -2,7 +2,7 @@ package bash
 
 import (
 	"fmt"
-	"github.com/turkenh/nutsh/dsl"
+	"github.com/goffinet/nutsh/dsl"
 	"strconv"
 )
 

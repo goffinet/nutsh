@@ -2,7 +2,7 @@ package dsl
 
 import (
 	"fmt"
-	"github.com/turkenh/nutsh/cli"
+	"github.com/goffinet/nutsh/cli"
 	"os"
 	"os/exec"
 	"os/signal"
@@ -34,7 +34,7 @@ func init() {
 					break
 				case <-c:
 					cmdline.Interrupt()
-					Say("Enter `exit` to terminate the Nut Shell.")
+					Say("Entrez `exit` pour terminer le Nut Shell.")
 				}
 			}
 		}

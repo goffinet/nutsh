@@ -2,7 +2,7 @@ package parser
 
 import (
 	"github.com/fatih/color"
-	"github.com/turkenh/nutsh/dsl"
+	"github.com/goffinet/nutsh/dsl"
 	"regexp"
 	//"time"
 	"bytes"
